@@ -34,3 +34,10 @@ list5 = [5,4,3,2,1]
 list5.sort()             # vzostupne utriedi pôvodné pole (priamo v pamäti), prvky poľa sa musia dať porovnávať
 print(list5)
 
+ovocie = ["banan", "jablko", "hruška"]
+for index, hodnota in enumerate(ovocie):
+    print("ovocie[{}] => {}".format(index, hodnota))
+
+# ovocie[0] => banan
+# ovocie[1] => jablko
+# ovocie[2] => hruška

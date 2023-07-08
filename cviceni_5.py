@@ -1,3 +1,5 @@
+
+print("Master Mind")
 import random
 
 jmeno = input("Zadej jmeno hrace: ")

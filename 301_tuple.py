@@ -15,3 +15,7 @@
 # print(b.count(2))
 # print(b.index(2))
 
+cislo = int(input("Najdi delitele cisla: ")) delitele = () for i in range(1,cislo+1):
+	if cislo % i == 0:
+		delitele += (i,)
+print("Cislo {} deli: {}".format(cislo, delitele))

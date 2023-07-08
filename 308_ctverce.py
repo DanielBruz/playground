@@ -14,12 +14,15 @@ def barva(vzd):
 def kresli_ctverec(x, y, velikost, barva):
     souradnice = (x - velikost / 6, y - velikost / 6, x + velikost / 6, y + velikost / 6)
     canvas.create_rectangle(souradnice, fill=barva, outline="blue", width=2)
+def kresli_ctverce(pocet):
+    for x in range(pocet):
+        x = random.randrange(640)
+        y = random.randrange(480)
+        vzd = vzdalenost(x,y,320,240)
+        color = barva(vzd)
+        kresli_ctverec(x,y, vzd/6, color)
 
-for i in range(1000):
-    x = random.randrange(640)
-    y = random.randrange(480)
-    vzd = vzdalenost(x, y, 320, 240)
-    f = barva(vzd)
-    kresli_ctverec(x, y, vzd, f)
+kresli_ctverce(1000)
 
 canvas.mainloop()
+
