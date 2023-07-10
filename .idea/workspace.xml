@@ -5,43 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21a21b5a-fa4c-4ef2-a21b-b4fc42675b31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/210_cykly.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/309_slovniky.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cviceni_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cviceni_6.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cviceni_7.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cvicenie_7.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files_csv.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/movies.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/soubor.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cisla.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cviceni_8.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/moje_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_7_2023_11_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_7_2023_11_52__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cviceni6.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tuple.py" beforeDir="false" afterPath="$PROJECT_DIR$/301_tuple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/convert_bin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctverce.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctverce_testy.py" beforeDir="false" afterPath="$PROJECT_DIR$/308_ctverce.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cvicenie1.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cvicenie2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cykly.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dice_print.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dice_simulator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/format.py" beforeDir="false" afterPath="$PROJECT_DIR$/204_formatovani.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funkce.py" beforeDir="false" afterPath="$PROJECT_DIR$/307_funkce.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafika.py" beforeDir="false" afterPath="$PROJECT_DIR$/206_207_grafika.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hra_cviceni5.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_5.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/krouzky.py" beforeDir="false" afterPath="$PROJECT_DIR$/211_cykly_krouzky.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/last_numbers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/list.py" beforeDir="false" afterPath="$PROJECT_DIR$/304_funkce_listu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list_comprehension.py" beforeDir="false" afterPath="$PROJECT_DIR$/305_list_comprehension.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list_enumerate.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/questions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/306_dalsi_texty.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table_numbers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/texty.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_caesar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uloha1.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uloha2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/311_cteme_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/311_cteme_csv.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,17 +19,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectId" id="2RjpIlJmxTEkPqxvTf2VBwSa3nl" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -69,14 +35,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Daniel/Documents/Development/playground",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "last_opened_file_path": "C:/Users/bruzenak/Development/playground"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bruzenak\Development\playground" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
