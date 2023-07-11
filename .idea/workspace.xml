@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21a21b5a-fa4c-4ef2-a21b-b4fc42675b31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cisla.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cviceni_8.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moje_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_7_2023_11_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_7_2023_11_52__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/movies_with_year.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/311_cteme_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/311_cteme_csv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cviceni_8.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_8.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soubor.txt" beforeDir="false" afterPath="$PROJECT_DIR$/soubor.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,14 +29,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/bruzenak/Development/playground"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bruzenak/Development/playground&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bruzenak\Development\playground" />
