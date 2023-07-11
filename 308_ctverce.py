@@ -1,6 +1,9 @@
 import tkinter
 import random
-canvas = tkinter.Canvas(width=640, height=480, bg="grey")
+
+width=640
+height=480
+canvas = tkinter.Canvas(width=width, height=height, bg="grey")
 canvas.pack()
 
 def vzdalenost(x1, y1, x2, y2):
@@ -16,9 +19,9 @@ def kresli_ctverec(x, y, velikost, barva):
     canvas.create_rectangle(souradnice, fill=barva, outline="blue", width=2)
 def kresli_ctverce(pocet):
     for x in range(pocet):
-        x = random.randrange(640)
-        y = random.randrange(480)
-        vzd = vzdalenost(x,y,320,240)
+        x = random.randrange(width)
+        y = random.randrange(height)
+        vzd = vzdalenost(x,y,width/2,height/2)
         color = barva(vzd)
         kresli_ctverec(x,y, vzd/6, color)
 
