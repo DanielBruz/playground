@@ -39,15 +39,15 @@ number = random.randint(1, 6)
 print("Na kocke padlo číslo {}".format(number))
 print("Vykreslujem kocku...")
 
-# skús iné veľkosti kocky, všetky ostatné výpočty sa prispôsobia
+# velikost kostky
 size = 300
 
-# center of dice
+# stred kostky
 x, y = canvas_width / 2, canvas_height / 2
 unit = size / 5
 radius = size * 0.03
 
-# Použi polygon ako obrys kocky. "radius" použijeme na vypočítanie zoseknutia
+# polygon je obrys kostky. "radius" pouzijeme na vypocet zkoseni
 #
 #    p2___p3
 # p1/       \p4
@@ -68,11 +68,7 @@ p8 = x - size / 2, y + size / 2 - radius
 
 canvas.create_polygon(p1, p2, p3, p4, p5, p6, p7, p8, outline="black", fill="gray", width=3)
 
-# Tu si vypočítame všetky súradnice bodiek dopredu.
-# Skús prečítať tento kód a pochopiť ako funguje. Do svojho riešenia skús
-# v skratke opísať akým spôsobom sa počítajú všetky body.
-#
-# nápoveda:
+# vypocet souradnic bodu na kostce.
 #
 #        a a a
 #        1 2 3
@@ -114,8 +110,6 @@ x7, y7 = a3, b3
 # To je 11 riadkov kódu...
 
 
-######## riešenie zapíš sem ########
-
 if (number == 1) or (number == 3) or (number == 5):
     canvas.create_oval(x4, y4, x4, y4, outline="black", fill="gray", width=20)
     if (number == 3) or (number == 5):
@@ -133,7 +127,5 @@ if (number == 2) or (number == 4) or (number == 6):
         if (number == 6):
             canvas.create_oval(x3, y3, x3, y3, outline="black", fill="gray", width=20)
             canvas.create_oval(x5, y5, x5, y5, outline="black", fill="gray", width=20)
-
-############### end ################
 
 canvas.mainloop()
