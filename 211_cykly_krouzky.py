@@ -9,8 +9,13 @@ canvas.pack()
 for i in range(1000):
     x = random.randrange(640)
     y = random.randrange(480)
-    canvas.create_oval(x,y,x+10, y+10)
-
-
+    if x > 320 and y > 240:
+        canvas.create_oval(x,y,x+10, y+10, fill = "red")
+    elif x > 320 and y < 240:
+        canvas.create_oval(x, y, x + 10, y + 10, fill="blue")
+    elif x < 320 and y > 240:
+        canvas.create_oval(x, y, x + 10, y + 10, fill ="yellow")
+    else:
+        canvas.create_oval(x, y, x + 10, y + 10, fill="purple")
 
 canvas.mainloop()
