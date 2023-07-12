@@ -1,4 +1,3 @@
-import tkinter
 import tkinter as tk
 import random
 import time
@@ -6,6 +5,7 @@ import time
 canvas = tk.Canvas(width=640, height=480)
 canvas.pack()
 
+# graphics
 def draw_gallows(x, y):
 	gallows = (x, y, x, y-40, x-100, y-40, x-100, y+160)
 	canvas.create_line(gallows, width=5)
@@ -30,6 +30,8 @@ def draw_letters(letters):
         letter_ids[letter].append(idx)
         start += 40
     return letter_ids
+
+# game logic
 def load_word(file_name):
     with open(file_name, "r") as fp:
         word_list = fp.read().splitlines()
@@ -43,11 +45,9 @@ def update_letters(letter_ids, already_guessed):
 def update_hangman(wrong_guesses, hangman_ids):
     for i in range(0, wrong_guesses):
         canvas.itemconfig(hangman_ids[i], state=tk.NORMAL)
-
 def good_guess(letter):
     already_guessed.append(letter)
     update_letters(letter_ids, already_guessed)
-
 def bad_guess(letter):
     global wrong_guesses
     already_guessed.append(letter)
@@ -64,15 +64,15 @@ def check_game_state():
         game_state = "WIN"
     elif wrong_guesses > 5:
         game_state = "LOSS"
-
 def game_over(state):
     if state == "WIN":
-        canvas.create_text(320, 240, text="CONGRATULATIONS", font="arial 60", fill="RED")
+        canvas.create_text(320, 240, text="CONGRATULATIONS", font="arial 30", fill="RED")
     else:
-        canvas.create_text(320, 240, text="GAME OVER", font="arial 60", fill="RED")
+        canvas.create_text(320, 240, text="GAME OVER", font="arial 30", fill="RED")
     canvas.update()
     time.sleep(3)
 
+# main
 draw_gallows(300, 240)
 hangman_ids = draw_hangman(300, 240)
 the_word = load_word("words.txt")
@@ -81,6 +81,7 @@ game_state = "RUNNING"
 already_guessed = []
 wrong_guesses = 0
 
+# main loop
 while game_state == "RUNNING":
     guess = input("guess letter: ")
     if guess in already_guessed:
