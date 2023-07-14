@@ -9,7 +9,7 @@ t.hideturtle()
 def ctverec(strana):
     t.pensize(3)
     t.pencolor("#{:06x}".format(random.randrange(256 ** 3)))
-    t.fillcolor("#{:06x}".format(random.randrange(256 ** 3)))
+    t.fillcolor(t.pencolor())
     t.begin_fill()
     for i in range(6):  # vcetne 2 cyklu presunu pro start trojuhelniku
         t.lt(90)
@@ -20,7 +20,7 @@ def ctverec(strana):
 def trojuhelnik(strana):
     t.pensize(3)
     t.pencolor("#{:06x}".format(random.randrange(256 ** 3)))
-    t.fillcolor("#{:06x}".format(random.randrange(256 ** 3)))
+    t.fillcolor(t.pencolor())
     t.begin_fill()
     uhel = 120
     for i in range(3):
