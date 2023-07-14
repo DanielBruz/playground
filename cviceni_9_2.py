@@ -60,11 +60,12 @@ def ulice():
         if sirka_strany_domu != 0:
             street.append(sirka_strany_domu)
     n = int(len(street))
+    x = 20
     for j in range(n):
-        if street[j] > street[j-1]:
-            posun = street[j] + abs(street[j] - street[j-1])
+        if street[j] > street[j]:
+            posun = street[j] + x
         else:
-            posun = street[j-1] + abs(street[j] - street[j-1])
+            posun = street[j-1] + x
         domek(street[j], posun)
 
 ulice()
