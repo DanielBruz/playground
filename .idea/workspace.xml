@@ -5,10 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21a21b5a-fa4c-4ef2-a21b-b4fc42675b31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cviceni_10_4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/407_animace_casovac_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/407_animace_casovac_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/407_animace_casovac_3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/407_animace_casovac_4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/407_animace_casovac_5.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/407_animace_obdelnik_tlacitko.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/408_animovane_obrazky_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/408_animovane_obrazky_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cviceni_11.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid/braid_26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/animace/braid_sprite.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cviceni_10_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_10_3.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
