@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21a21b5a-fa4c-4ef2-a21b-b4fc42675b31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/406_udalosti_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/406_udalosti_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/406_udalosti_3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/406_udalosti_4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/406_udalosti_5.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cviceni_10_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cviceni_9_3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cviceni_9_4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cviceni_9_5.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cviceni_10_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_10_2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
