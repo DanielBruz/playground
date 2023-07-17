@@ -37,18 +37,21 @@ def handle_click(event):
     x, y = event.x, event.y
     circle_x, circle_y, _, _ = canvas.coords(circle)
     distance = ((circle_x - x) ** 2 + (circle_y - y) ** 2) ** 0.5
-    if distance <= radius:
-        update_score(1)
-        canvas.coords(circle, generate_position())
-    else:
-        update_score(-1)
+    if score >= 0:
+        if distance <= radius:
+            update_score(1)
+            canvas.coords(circle, generate_position())
+        else:
+            update_score(-1)
 
 
 # Funkce pro pohyb kruhu
 def move_circle():
     canvas.coords(circle, generate_position())
-    root.after(1000, move_circle)
-
+    if score >= 0:
+        root.after(1000, move_circle)
+    else:
+        canvas.create_text(WIDTH/2, HEIGHT/2, text="GAME OVER", font=("Arial", 16), fill="red", anchor="center")
 
 # Vytvoření plátna
 canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, bg="white")
