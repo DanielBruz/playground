@@ -24,7 +24,7 @@ class Game(tk.Tk):
         return t
 
     def create_background(self):
-        self.bg = tk.PhotoImage(file="background.png")
+        self.bg = tk.PhotoImage(file="img/akvarium/background.png")
         self.canvas = tk.Canvas(width=self.bg.width(), height=self.bg.height())
         self.canvas.pack()
         self.canvas.create_image(self.bg.width()/2, self.bg.height()/2,
@@ -80,10 +80,10 @@ class Game(tk.Tk):
             elif isinstance(food, Pellet):
                 p += 1
 
-        self.f = self.display_food_stats("food/flake_icon.png", f, 300)
-        self.w1 = self.display_food_stats("food/worm1_icon.png", w1, 350)
-        self.w2 = self.display_food_stats("food/worm2_icon.png", w2, 400)
-        self.p = self.display_food_stats("food/pellet_icon.png", p, 450)
+        self.f = self.display_food_stats("img/akvarium/food/flake_icon.png", f, 300)
+        self.w1 = self.display_food_stats("img/akvarium/food/worm1_icon.png", w1, 350)
+        self.w2 = self.display_food_stats("img/akvarium/food/worm2_icon.png", w2, 400)
+        self.p = self.display_food_stats("img/akvarium/food/pellet_icon.png", p, 450)
 
     def display_food_stats(self, file_path, count, position):
         img = tk.PhotoImage(file=file_path)
@@ -152,7 +152,7 @@ class Worm1(Food):
     speed = 5
     def __init__(self, canvas):
         super().__init__(canvas)
-        self.sprites = self.load_sprites("food/worm1.png", 1, 1)
+        self.sprites = self.load_sprites("img/akvarium/food/worm1.png", 1, 1)
         self.canvas.itemconfig(self.id, image=self.sprites[0])
 
 class Worm2(Food):
@@ -160,7 +160,7 @@ class Worm2(Food):
     speed = 6
     def __init__(self, canvas):
         super().__init__(canvas)
-        self.sprites = self.load_sprites("food/worm2.png", 1, 1)
+        self.sprites = self.load_sprites("img/akvarium/food/worm2.png", 1, 1)
         self.canvas.itemconfig(self.id, image=self.sprites[0])
 
 class Pellet(Food):
@@ -168,14 +168,14 @@ class Pellet(Food):
     speed = 7
     def __init__(self, canvas):
         super().__init__(canvas)
-        self.sprites = self.load_sprites("food/pellet.png", 1, 1)
+        self.sprites = self.load_sprites("img/akvarium/food/pellet.png", 1, 1)
         self.canvas.itemconfig(self.id, image=self.sprites[0])
 
 class Flake(Food):
     value = 2
     speed = 3
-    flakes = ["food/flake1.png", "food/flake2.png", "food/flake3.png",
-               "food/flake4.png", "food/flake5.png" ]
+    flakes = ["img/akvarium/food/flake1.png", "img/akvarium/food/flake2.png", "img/akvarium/food/flake3.png",
+               "img/akvarium/food/flake4.png", "img/akvarium/food/flake5.png" ]
     def __init__(self, canvas):
         super().__init__(canvas)
         file_path = random.choice(self.flakes)
@@ -219,13 +219,13 @@ class Player(BaseSprite):
         }
 
         sprite_sheet[self.IDLE][self.LEFT] = self.load_sprites(
-                                            "player/left_idle.png", 5, 4)
+                                            "img/akvarium/player/left_idle.png", 5, 4)
         sprite_sheet[self.IDLE][self.RIGHT] = self.load_sprites(
-                                            "player/right_idle.png", 5, 4)
+                                            "img/akvarium/player/right_idle.png", 5, 4)
         sprite_sheet[self.SWIM][self.LEFT] = self.load_sprites(
-                                            "player/left_swim.png", 3, 4)
+                                            "img/akvarium/player/left_swim.png", 3, 4)
         sprite_sheet[self.SWIM][self.RIGHT] = self.load_sprites(
-                                            "player/right_swim.png", 3, 4)
+                                            "img/akvarium/player/right_swim.png", 3, 4)
         return sprite_sheet
 
     def next_animation_index(self, idx):

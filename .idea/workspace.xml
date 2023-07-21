@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21a21b5a-fa4c-4ef2-a21b-b4fc42675b31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/501_definujeme_tridy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/502_specialni_metody_trid_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/502_specialni_metody_trid_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/502_specialni_metody_trid_3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/503_dedicnost_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/503_dedicnost_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/503_dedicnost_3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/504_polymorfizmus_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/504_polymorfizmus_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cviceni_akvarium.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_akvarium.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cviceni_akvarium_testy.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_akvarium_testy.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
