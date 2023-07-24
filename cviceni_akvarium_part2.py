@@ -1,4 +1,5 @@
 import tkinter as tk
+import random
 
 
 ########################################### Trida Game #########################################
@@ -7,6 +8,7 @@ class Game(tk.Tk):
         super().__init__()
         self.create_background()
         self.player = Player(self.canvas)
+        self.food = Worm1(self.canvas)  # podsunu mu muj canvas
         # bindovani udalostí - tedy stisku a pusteni klaves. U klaves jde o bind_all.
         self.canvas.bind_all("<KeyPress-Right>", self.player.keypress_right)
         self.canvas.bind_all("<KeyRelease-Right>", self.player.keyrelease_right)
@@ -16,8 +18,12 @@ class Game(tk.Tk):
         self.canvas.bind_all("<KeyRelease-Up>", self.player.keyrelease_up)
         self.canvas.bind_all("<KeyPress-Down>", self.player.keypress_down)
         self.canvas.bind_all("<KeyRelease-Down>", self.player.keyrelease_down)
+
     def timer(self):
         self.player.tik()
+        self.food.tik()
+        if self.food.destroyed:  # kdyz je jidlo znicene, vyrobim dalsiho cerva
+            self.food = Worm1(self.canvas)
         self.canvas.after(40, self.timer)
 
     def create_background(self):
@@ -63,8 +69,44 @@ class BaseSprite:
         self.canvas.delete(self.id)
 
 
-########################################### Trida Player #########################################
+########################################### Trida Food #########################################
+class Food(BaseSprite):  # trida dedi z BaseSprite.
+    # Logika hry: Za kazdy typ jidla budu dostavat jinou hodnotu casu navic. Kdyz cas dobehne.
+    # Rybicka umre hlady. Hra konci a zobrazi se celkove skore, kolik toho hrac snedl :-)
+    # genericka trida - bude implementovat spolecne funkce a rozdily poresim zvlast.
+    value = 0  # jidlo ma nejakou hodnotu, nastavim na 0.
+    speed = 0  # definujeme rychlost padani.
 
+    def __init__(self, canvas):  # konstruktor, potrebuje jen muj canvas.
+        x = random.randrange(100, 1100)  # nahodne budou padat zhora. Background je velikosti asi 100-1100.
+        y = 0  # jidlo pada se zhora.
+        super().__init__(canvas, x, y)  # volam konstruktor base tridy a podsunu mu jen canvas a souradnice.
+
+    def move(self):  # musim definovat pohyb jidla. Jen podle osy y.
+        y = self.y + self.speed
+        if y <= self.canvas.winfo_height() - 20:  # kontrola, ze mi jidlo nevyjede z canvasu.
+            self.y = y
+        else:
+            self.destroy()  # kdyz jidlo dopadne na zem, znicim ho = zmizi.
+        self.canvas.coords(self.id, self.x, self.y)  # self.id, protoze pohybuji s mym obrazkem.
+
+    def tik(self):
+        self.move()  # v tikaci metode zavolam jen pohyb.
+
+
+########################################### Tridy druhu jidla #########################################
+
+class Worm1(Food):  # dedi z tridy Food.
+    value = 10
+    speed = 6
+
+    def __init__(self, canvas):
+        super().__init__(canvas)
+        self.sprites = self.load_sprite("img/akvarium/food/worm1.png", 1, 1)  # funkce nacita pole jen s 1 prvkem
+        self.canvas.itemconfig(self.id, image=self.sprites[0])
+
+
+########################################### Trida Player #########################################
 class Player(BaseSprite):
     LEFT = "left"
     RIGHT = "right"
@@ -78,6 +120,8 @@ class Player(BaseSprite):
         self.direction = self.LEFT
         self.sprite_idx = 0
         self.dx = self.dy = 0  # vynulovani vektoru pohybu
+        self.keys_pressed = 0  # kdyz stisknu 2 klávesy a pak jednu pustim, rybička se zastavi,
+        # vyresim to pomoci keys_pressed.
 
     def load_all_sprites(self):
         sprite_sheet = {
@@ -128,38 +172,51 @@ class Player(BaseSprite):
     def keypress_right(self, event):  # argument event je povinny
         self.movement = self.SWIM
         self.direction = self.RIGHT
+        self.keys_pressed += 1  # v kazde funkci pro stisk klavesy pripocitam 1 = je stisknuto vice klaves.
         #  nastavim si vektor pohybu po ose x a jeho velikost a pak do INIT doplnim vektory dx a dy = 0.
         self.dx = 5
 
-    # a udelam i protiudalost, tedy pusteni klavesy:
+    # a udelam i protiudalosti, tedy pusteni klavesy:
     def keyrelease_right(self, event):
         self.dx = 0
-        self.movement = self.IDLE
+        self.keys_pressed -= 1  # pustil jsem, tedy odpocitavam 1.
+        if self.keys_pressed == 0:  # az kdyz neni stlacena zadna klavesa, zastavuji pohyb na self.IDLE.
+            self.movement = self.IDLE
 
     def keypress_left(self, event):
         self.movement = self.SWIM
         self.direction = self.LEFT
+        self.keys_pressed += 1
         self.dx = -5
 
     def keyrelease_left(self, event):
         self.dx = 0
-        self.movement = self.IDLE
+        self.keys_pressed -= 1
+        if self.keys_pressed == 0:  # az kdyz neni stlacena zadna klavesa, zastavuji pohyb na self.IDLE.
+            self.movement = self.IDLE
 
     def keypress_up(self, event):
         self.movement = self.SWIM
+        self.keys_pressed += 1
         self.dy = -5
 
     def keyrelease_up(self, event):
         self.dy = 0
-        self.movement = self.IDLE
+        self.keys_pressed -= 1
+        if self.keys_pressed == 0:  # az kdyz neni stlacena zadna klavesa, zastavuji pohyb na self.IDLE.
+            self.movement = self.IDLE
 
     def keypress_down(self, event):
         self.movement = self.SWIM
+        self.keys_pressed += 1
         self.dy = 5
 
     def keyrelease_down(self, event):
         self.dy = 0
-        self.movement = self.IDLE
+        self.keys_pressed -= 1
+        if self.keys_pressed == 0:  # az kdyz neni stlacena zadna klavesa, zastavuji pohyb na self.IDLE.
+            self.movement = self.IDLE
+
 
 ########################################## Hlavni kod ######################################################
 game = Game()
