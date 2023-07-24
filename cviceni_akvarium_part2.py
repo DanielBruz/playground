@@ -7,7 +7,15 @@ class Game(tk.Tk):
         super().__init__()
         self.create_background()
         self.player = Player(self.canvas)
-
+        # bindovani udalostí - tedy stisku a pusteni klaves. U klaves jde o bind_all.
+        self.canvas.bind_all("<KeyPress-Right>", self.player.keypress_right)
+        self.canvas.bind_all("<KeyRelease-Right>", self.player.keyrelease_right)
+        self.canvas.bind_all("<KeyPress-Left>", self.player.keypress_left)
+        self.canvas.bind_all("<KeyRelease-Left>", self.player.keyrelease_left)
+        self.canvas.bind_all("<KeyPress-Up>", self.player.keypress_up)
+        self.canvas.bind_all("<KeyRelease-Up>", self.player.keyrelease_up)
+        self.canvas.bind_all("<KeyPress-Down>", self.player.keypress_down)
+        self.canvas.bind_all("<KeyRelease-Down>", self.player.keyrelease_down)
     def timer(self):
         self.player.tik()
         self.canvas.after(40, self.timer)
@@ -69,6 +77,7 @@ class Player(BaseSprite):
         self.movement = self.IDLE
         self.direction = self.LEFT
         self.sprite_idx = 0
+        self.dx = self.dy = 0  # vynulovani vektoru pohybu
 
     def load_all_sprites(self):
         sprite_sheet = {
@@ -97,8 +106,62 @@ class Player(BaseSprite):
         self.sprite_idx = self.next_animation_index(self.sprite_idx)
         img = self.sprite_sheet[self.movement][self.direction][self.sprite_idx]
         self.canvas.itemconfig(self.id, image=img)
+        #  v tikani se mi nemeni x a y, tedy rybicka by se pri stisku klavesy nepohybovala, udelam tedy funkci MOVE.
+        #  A po jejim vytvoreni se vracim do Tiku a nastavim "kdyz je stav pohybu MOVE, pak volam funkci pohybu" :
+        if self.movement == self.SWIM:
+            self.move()
 
+    def move(self):
+        x = self.x + self.dx  # aktualni souradnice + vektor pohybu = nasledujici poloha rybicky
+        y = self.y + self.dy
+        # Kontrola, zdali se pohybuje v nasem okne, vlevo i vpravo 55 pixelu od kraje.
+        # self.x a self.y jsou souradnice stredu rybicky, tedy musim nechat nejaky prostor, tedy 55 a 35 pro y.
+        if x >= 55 and x <= self.canvas.winfo_width() - 55:
+            self.x = x
+        if y >= 35 and y <= self.canvas.winfo_height() - 35:
+            self.y = y
+        # a teď musim zmenit souradnioce meho objektu
+        self.canvas.coords(self.id, x, y)
 
+    # nadefinujeme si pohyb hrace pomoci stisku a pusteni klaves.
+    # A pak v hlavnim GAME/INIT musim nastavit bindovani udalostí.
+    def keypress_right(self, event):  # argument event je povinny
+        self.movement = self.SWIM
+        self.direction = self.RIGHT
+        #  nastavim si vektor pohybu po ose x a jeho velikost a pak do INIT doplnim vektory dx a dy = 0.
+        self.dx = 5
+
+    # a udelam i protiudalost, tedy pusteni klavesy:
+    def keyrelease_right(self, event):
+        self.dx = 0
+        self.movement = self.IDLE
+
+    def keypress_left(self, event):
+        self.movement = self.SWIM
+        self.direction = self.LEFT
+        self.dx = -5
+
+    def keyrelease_left(self, event):
+        self.dx = 0
+        self.movement = self.IDLE
+
+    def keypress_up(self, event):
+        self.movement = self.SWIM
+        self.dy = -5
+
+    def keyrelease_up(self, event):
+        self.dy = 0
+        self.movement = self.IDLE
+
+    def keypress_down(self, event):
+        self.movement = self.SWIM
+        self.dy = 5
+
+    def keyrelease_down(self, event):
+        self.dy = 0
+        self.movement = self.IDLE
+
+########################################## Hlavni kod ######################################################
 game = Game()
 game.timer()
 
