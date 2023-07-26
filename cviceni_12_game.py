@@ -1,6 +1,7 @@
 import tkinter as tk
 import random
-import os
+from playsound import playsound
+import time
 
 
 ########################################### Trida Game #########################################
@@ -8,11 +9,25 @@ class Game(tk.Tk):
     def __init__(self):
         super().__init__()
         self.create_background()
-        self.duck = Duck(self.canvas)
+        self.birds = Birds(self.canvas)
         self.shooter = Shooter(self.canvas, x=0, y=0)
+
         self.canvas.bind("<Motion>", self.shooter.motion)
         self.canvas.bind("<ButtonPress-1>", self.shooter.press)
         self.canvas.bind("<ButtonRelease-1>", self.shooter.release)
+
+        self.time = 30
+        self.game_started = time.time()
+        self.time_label = self.canvas.create_text(self.bg.width() - 50, 30,
+                                                  text="00:00", font="ariel 30", fill="orangered")
+
+    def display_game_time(self):
+        t = self.time - int(time.time() - self.game_started)
+        minutes = t // 60
+        seconds = t % 60
+        time_string = "{:02d}:{:02d}".format(minutes, seconds)
+        self.canvas.itemconfig(self.time_label, text=time_string)
+        return t
 
     def create_background(self):  # 1280 * 724
         self.bg = tk.PhotoImage(file="img/birds/background2.png")
@@ -21,8 +36,16 @@ class Game(tk.Tk):
         self.canvas.create_image(self.bg.width() / 2, self.bg.height() / 2, image=self.bg)
 
     def timer(self):
-        self.duck.tik()
-        self.canvas.after(40, self.timer)
+        self.birds.tik()
+        t = self.display_game_time()
+        if t <= 0:
+            self.game_over()
+        else:
+            self.canvas.after(40, self.timer)
+
+    def game_over(self):
+        self.canvas.create_text(self.bg.width() - 200, 200,
+                                text="GAME OVER", font="ariel 30", fill="orangered")
 
 
 ########################################### Trida BaseSprite #########################################
@@ -60,13 +83,13 @@ class BaseSprite:
         self.destroyed = True
         self.canvas.delete(self.id)
 
+########################################### Trida Birds #########################################
 
-########################################### Trida Duck #########################################
-
-class Duck(BaseSprite):
+class Birds(BaseSprite):
 
     def __init__(self, canvas, x=1700, y=200):
         super().__init__(canvas, x, y)
+        self.idx = 0
         self.sprite_idx = 0
         self.sprite_sheet = self.load_all_sprites()
         self.dx = self.dy = 0
@@ -109,15 +132,13 @@ class Shooter(BaseSprite):
         self.id_target = self.canvas.create_image(self.x, self.y, image=self.target)
 
     def motion(self, event):
-        print("hybem sa na {},{}".format(event.x, event.y))
         self.canvas.coords(self.id_target, event.x, event.y)
 
     def press(self, event):
-        print("stlačil som na {},{}".format(event.x, event.y))
-        os.system("start img/birds/shot.mp3")
+        playsound("img/birds/shot.mp3")
 
     def release(self, event):
-        print("pustil som na {},{}".format(event.x, event.y))
+        pass
 
 
 ########################################## Hlavni kod ######################################################
