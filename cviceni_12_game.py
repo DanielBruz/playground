@@ -1,148 +1,190 @@
 import tkinter as tk
 import random
-from playsound import playsound
-import time
+from PIL import Image, ImageTk
+
+# Konstanty pro čas hry (v sekundách)
+GAME_DURATION = 30
+
+# Počáteční hodnoty skóre a času
+score = 0
+time_remaining = GAME_DURATION
+
+# Slovník pro uchovávání ptáků a jejich aktuálních snímků
+birds_dict = {}
+
+# Proměnné pro skutečnou velikost ptáka na plátně
+frame_width = 0
+frame_height = 0
 
 
-########################################### Trida Game #########################################
-class Game(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.create_background()
-        self.birds = Birds(self.canvas)
-        self.shooter = Shooter(self.canvas, x=0, y=0)
-
-        self.canvas.bind("<Motion>", self.shooter.motion)
-        self.canvas.bind("<ButtonPress-1>", self.shooter.press)
-        self.canvas.bind("<ButtonRelease-1>", self.shooter.release)
-
-        self.time = 30
-        self.game_started = time.time()
-        self.time_label = self.canvas.create_text(self.bg.width() - 50, 30,
-                                                  text="00:00", font="ariel 30", fill="orangered")
-
-    def display_game_time(self):
-        t = self.time - int(time.time() - self.game_started)
-        minutes = t // 60
-        seconds = t % 60
-        time_string = "{:02d}:{:02d}".format(minutes, seconds)
-        self.canvas.itemconfig(self.time_label, text=time_string)
-        return t
-
-    def create_background(self):  # 1280 * 724
-        self.bg = tk.PhotoImage(file="img/birds/background2.png")
-        self.canvas = tk.Canvas(width=self.bg.width(), height=self.bg.height())
-        self.canvas.pack()
-        self.canvas.create_image(self.bg.width() / 2, self.bg.height() / 2, image=self.bg)
-
-    def timer(self):
-        self.birds.tik()
-        t = self.display_game_time()
-        if t <= 0:
-            self.game_over()
-        else:
-            self.canvas.after(40, self.timer)
-
-    def game_over(self):
-        self.canvas.create_text(self.bg.width() - 200, 200,
-                                text="GAME OVER", font="ariel 30", fill="orangered")
+# Funkce pro načtení obrázku pozadí a získání jeho rozměrů
+def load_background_image(image_path):
+    background_i = Image.open(image_path)
+    background_w, background_h = background_i.size
+    return ImageTk.PhotoImage(background_i), background_w, background_h
 
 
-########################################### Trida BaseSprite #########################################
-class BaseSprite:
-    def __init__(self, canvas, x, y):
-        self.canvas = canvas
-        self.x, self.y = x, y
-        self.id = self.canvas.create_image(x, y)
-        self.destroyed = False
-
-    def load_sprite(self, file_path, rows, cols):
-        sprite_img = tk.PhotoImage(file=file_path)
-        sprites = []
-        width = sprite_img.width() // cols
-        height = sprite_img.height() // rows
-        for row in range(rows):
-            for col in range(cols):
-                l = col * width
-                t = row * height
-                r = (col + 1) * width
-                b = (row + 1) * height
-                subimage = self.create_subimage(sprite_img, l, t, r, b)
-                sprites.append(subimage)
-        return sprites
-
-    def create_subimage(self, img, left, top, right, bottom):
-        subimage = tk.PhotoImage()
-        subimage.tk.call(subimage, "copy", img, "-from", left, top, right, bottom, "-to", 0, 0)
-        return subimage
-
-    def tik(self):
-        pass
-
-    def destroy(self):
-        self.destroyed = True
-        self.canvas.delete(self.id)
-
-########################################### Trida Birds #########################################
-
-class Birds(BaseSprite):
-
-    def __init__(self, canvas, x=1700, y=200):
-        super().__init__(canvas, x, y)
-        self.idx = 0
-        self.sprite_idx = 0
-        self.sprite_sheet = self.load_all_sprites()
-        self.dx = self.dy = 0
-        self.x = 1280
-        self.y = random.randrange(100, 500)
-
-    def load_all_sprites(self):
-        sprite_sheet = self.load_sprite("img/birds/spritesheet/__yellow_flying_bird_3_flying.png", 2, 4)
-        return sprite_sheet
-
-    def next_animation_index(self, idx):
-        idx += 1
-        max_idx = len(self.sprite_sheet)
-        idx = idx % max_idx
-        return idx
-
-    def tik(self):
-        self.sprite_idx = self.next_animation_index(self.sprite_idx)
-        img = self.sprite_sheet[self.sprite_idx]
-        self.canvas.itemconfig(self.id, image=img)
-        self.move()
-
-    def move(self):
-        x = self.x - self.dx
-        y = self.y
-        if x >= -220:
-            self.dx += 20
-        else:
-            self.destroy()
-        self.canvas.coords(self.id, x, y)
+# Konstanta pro cestu k obrázku pozadí
+BACKGROUND_IMAGE_PATH = "img/birds/background2.png"
 
 
-########################################## Trida Shooter ######################################################
-class Shooter(BaseSprite):
-    def __init__(self, canvas, x, y):
-        super().__init__(canvas, x, y)
-        self.canvas = canvas
-        self.x, self.y = x, y
-        self.target = tk.PhotoImage(file="img/birds/target.png")
-        self.id_target = self.canvas.create_image(self.x, self.y, image=self.target)
-
-    def motion(self, event):
-        self.canvas.coords(self.id_target, event.x, event.y)
-
-    def press(self, event):
-        playsound("img/birds/shot.mp3")
-
-    def release(self, event):
-        pass
+# Funkce pro nastavení rozměrů okna na základě rozměrů obrázku pozadí
+def set_window_size():
+    root.geometry(f"{background_width}x{background_height}")
 
 
-########################################## Hlavni kod ######################################################
+# Vytvoření hlavního okna
+root = tk.Tk()
+root.title("Bird Shooting Game")
 
-game = Game()
-game.timer()
-game.mainloop()
+# Načtení obrázku pozadí a jeho rozměrů
+background_image = Image.open(BACKGROUND_IMAGE_PATH)
+background_width, background_height = background_image.size
+background_img = ImageTk.PhotoImage(background_image)
+
+# Nastavení rozměrů okna na základě rozměrů obrázku pozadí
+set_window_size()
+
+# Vytvoření plátna s pozadím
+canvas = tk.Canvas(root, width=background_width, height=background_height)
+canvas.pack()
+canvas.create_image(0, 0, image=background_img, anchor=tk.NW)
+
+
+# Funkce pro vytvoření snímků ptáka z obrázku
+def load_bird_frames(image_path):
+    image = Image.open(image_path)
+    image_frames = []
+    global frame_width, frame_height
+    frame_width = image.width // 4  # Očekáváme 4 sloupce v obrázku
+    frame_height = image.height // 2  # Očekáváme 2 řádky v obrázku
+
+    for row in range(2):
+        for col in range(4):
+            left = col * frame_width
+            top = row * frame_height
+            right = left + frame_width
+            bottom = top + frame_height
+            frame = image.crop((left, top, right, bottom))
+            image_frames.append(ImageTk.PhotoImage(frame))
+
+    return image_frames
+
+
+# Funkce pro přidání nového ptáka
+def add_bird():
+    bird_y = random.randint(50, background_height - frame_height - 50)
+    bird = canvas.create_image(background_width, bird_y, anchor=tk.W, image=bird_frames[0], tags="bird")
+    birds_dict[bird] = 0  # Uchováváme ptáka a index aktuálního snímku ptáka v seznamu snímků
+    root.after(1000, add_bird)  # Přidání nového ptáka po 1000 ms (1 sekunda)
+
+
+# Funkce pro aktualizaci pohybu ptáků
+def move_birds():
+    birds_to_remove = []
+    for bird in list(birds_dict.keys()):  # Používáme list() pro vytvoření kopie klíčů
+        bird_coords = canvas.coords(bird)
+        canvas.move(bird, -20, 0)  # Posun ptáka o 20 bodů doleva
+        frame_idx = (birds_dict[bird] + 1) % len(bird_frames)
+        canvas.itemconfig(bird, image=bird_frames[frame_idx])
+        birds_dict[bird] = frame_idx  # Aktualizace indexu snímku ptáka v slovníku
+        if bird_coords[0] + frame_width <= 0:  # Kontrola, zda je pták úplně mimo plátno
+            birds_to_remove.append(bird)
+
+    for bird in birds_to_remove:
+        canvas.delete(bird)
+        del birds_dict[bird]
+
+    root.after(100, move_birds)  # Opakování funkce po 100 ms (0.1 sekundy)
+
+
+# Funkce pro aktualizaci skóre
+def update_score():
+    global score
+    score += 1
+    canvas.itemconfig(score_label, text=f"Score: {score}", fill="red")
+
+
+# Funkce pro aktualizaci zbývajícího času
+def update_time():
+    global time_remaining
+    time_remaining -= 1
+    canvas.itemconfig(time_label, text=f"Time: {time_remaining} sec", fill="red")
+    if time_remaining > 0:
+        root.after(1000, update_time)
+    else:
+        end_game()
+
+
+# Funkce pro ukončení hry a zobrazení statistiky
+def end_game():
+    canvas.delete("all")
+    canvas.create_image(0, 0, image=background_img, anchor=tk.NW)  # Obnovíme pozadí na prázdném canvasu
+    canvas.create_text(background_width // 2, background_height // 2, text=f"Final Score: {score}", fill="red",
+                       font=("Arial", 30))
+    canvas.pack()  # Znovu zabalíme plátno, aby se zobrazila statistika
+
+
+# Funkce pro kliknutí na ptáka
+def shoot_bird(event):
+    for bird in list(birds_dict.keys()):  # Používáme list() pro vytvoření kopie klíčů
+        bird_coords = canvas.coords(bird)
+        if bird_coords[0] <= event.x <= bird_coords[0] + frame_width and \
+                bird_coords[1] <= event.y <= bird_coords[1] + frame_height:
+            canvas.delete(bird)
+            del birds_dict[bird]
+            update_score()
+
+
+# Funkce pro pohyb ukazatele myši a doplnění obrázku terče
+def move_cursor(event):
+    global cursor  # Musíme deklarovat, že používáme globální proměnnou cursor
+    cursor_x, cursor_y = event.x, event.y
+    if cursor is None:  # Pokud je cursor prázdný, vytvoříme nový plátnový objekt
+        cursor = canvas.create_image(cursor_x, cursor_y, image=target_img, anchor=tk.CENTER)
+    else:  # Jinak pouze aktualizujeme jeho pozici
+        canvas.coords(cursor, cursor_x, cursor_y)
+
+
+# Načtení snímků ptáka z obrázku
+bird_frames = load_bird_frames("img/birds/spritesheet/yellow_flying_bird_3_flying.png")
+
+# Vytvoření textového objektu pro skóre na plátno
+score_label = canvas.create_text(100, 30, text="Score: 0", fill="white", font=("Arial", 20), anchor=tk.W)
+
+# Vytvoření textového objektu pro zbývající čas na plátno
+time_label = canvas.create_text(100, 60, text=f"Time: {time_remaining} sec", fill="white",
+                                font=("Arial", 20), anchor=tk.W)
+
+# Vytvoření textového objektu pro statistiku na plátno (prázdné canvas)
+stats_label = canvas.create_text(background_width // 2, background_height // 2, text="",
+                                 fill="red", font=("Arial", 30))
+
+# Přidání události pro kliknutí myší
+canvas.bind("<Button-1>", shoot_bird)
+
+# Globální proměnná pro terč (ukazatel myši)
+target_img = None
+cursor = None  # Přidáme proměnnou cursor pro ukazatel myši
+
+
+# Funkce pro načtení obrázku terče (target.png)
+def load_target_image(image_path):
+    global target_img
+    target_image = Image.open(image_path)
+    target_img = ImageTk.PhotoImage(target_image)
+
+
+# Načtení obrázku terče
+load_target_image("img/birds/target.png")
+
+# Spuštění hry - přidání prvního ptáka, spuštění pohybu ptáků a spuštění časovače
+add_bird()
+move_birds()
+update_time()
+update_score()
+
+# Přidání události pro pohyb myši a aktualizaci ukazatele
+canvas.bind("<Motion>", move_cursor)
+
+root.mainloop()

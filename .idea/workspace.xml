@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21a21b5a-fa4c-4ef2-a21b-b4fc42675b31" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/playground.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/playground.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cviceni_12_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_12_game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cviceni_pomocne.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_pomocne.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/birds/target.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/birds/target.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cviceni_pomocne.py" beforeDir="false" afterPath="$PROJECT_DIR$/cviceni_12_OOP.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
