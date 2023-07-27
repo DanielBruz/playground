@@ -2,10 +2,11 @@ import tkinter as tk
 import random
 from PIL import Image, ImageTk
 
+
 class GameObject:
-    def __init__(self, canvas, image_path, x, y):
+    def __init__(self, canvas, image, x, y):
         self.canvas = canvas
-        self.image = self.load_image(image_path)
+        self.image = image
         self.x = x
         self.y = y
         self.object_id = self.canvas.create_image(self.x, self.y, image=self.image, anchor=tk.NW)
@@ -22,8 +23,9 @@ class GameObject:
     def delete(self):
         self.canvas.delete(self.object_id)
 
+
 class Bird(GameObject):
-    def __init__(self, canvas, bird_frames, background_height):
+    def __init__(self, canvas, bird_frames, background_height, frame_height):
         super().__init__(canvas, bird_frames[0], background_width, random.randint(50, background_height - frame_height - 50))
         self.bird_frames = bird_frames
         self.frame_idx = 0
@@ -32,9 +34,13 @@ class Bird(GameObject):
         self.frame_idx = (self.frame_idx + 1) % len(self.bird_frames)
         self.canvas.itemconfig(self.object_id, image=self.bird_frames[self.frame_idx])
 
+
 class Target(GameObject):
-    def __init__(self, canvas, image_path):
-        super().__init__(canvas, image_path, 0, 0)
+    def __init__(self, canvas, image_path, background_width, background_height):
+        x = background_width // 2
+        y = background_height // 2
+        super().__init__(canvas, image_path, x, y)
+
 
 class Game:
     def __init__(self, root, width, height, game_duration):
@@ -44,6 +50,8 @@ class Game:
         self.game_duration = game_duration
         self.time_remaining = game_duration
         self.frame_width = 0
+        self.frame_height = 0
+        self.background_width = 0
         self.frame_height = 0
 
         self.canvas = tk.Canvas(root, width=width, height=height)
@@ -64,7 +72,7 @@ class Game:
         self.stats_label = self.canvas.create_text(self.width // 2, self.height // 2, text="", fill="red",
                                                    font=("Arial", 30))
 
-        self.target = Target(self.canvas, "img/birds/target.png")
+        self.target = Target(self.canvas, "img/birds/target.png", self.background_width, self.background_height)
 
         self.add_bird()
         self.move_birds()
@@ -98,7 +106,7 @@ class Game:
         return image_frames
 
     def add_bird(self):
-        bird = Bird(self.canvas, self.bird_frames, self.background_height)
+        bird = Bird(self.canvas, self.bird_frames, self.background_height, self.background_width, self.frame_height)
         self.birds.append(bird)
         root.after(1000, self.add_bird)
 
@@ -124,7 +132,8 @@ class Game:
     def shoot_bird(self, event):
         for bird in list(self.birds):
             bird_coords = (bird.x, bird.y)
-            if bird_coords and bird_coords[0] <= event.x <= bird_coords[0] + self.frame_width and bird_coords[1] <= event.y <= bird_coords[1] + self.frame_height:
+            if bird_coords and bird_coords[0] <= event.x <= bird_coords[0] + self.frame_width\
+                    and bird_coords[1] <= event.y <= bird_coords[1] + self.frame_height:
                 bird.delete()
                 self.birds.remove(bird)
                 self.update_score()
@@ -151,6 +160,7 @@ class Game:
                                 text=f"Final Score: {self.score}", fill="red", font=("Arial", 30))
         self.canvas.pack()
 
+
 # Hlavní program
 root = tk.Tk()
 root.title("Bird Shooting Game")
@@ -159,4 +169,5 @@ height = 600
 GAME_DURATION = 30
 
 game = Game(root, width, height, GAME_DURATION)
+
 root.mainloop()
