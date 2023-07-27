@@ -1,0 +1,159 @@
+Tento kód je implementací jednoduché hry, ve které hráč střílí na létající ptáky. Nyní si postupně projdeme jednotlivé části kódu a doplníme poznámky k jednotlivým metodám a funkcím.
+
+    Importy
+
+    python
+
+import tkinter as tk
+import random
+from PIL import Image, ImageTk
+
+    Importujeme potřebné moduly pro tvorbu grafického uživatelského rozhraní (tkinter), generování náhodných čísel (random) a práci s obrázky (PIL - Python Imaging Library).
+
+Třída BirdShootingGame
+Tato třída reprezentuje hru a obsahuje metody a atributy potřebné pro její fungování.
+
+Metoda __init__
+
+python
+
+def __init__(self, root, width, height, game_duration):
+
+    Konstruktor třídy BirdShootingGame, který se volá při vytváření instance hry.
+    root: Hlavní okno (Tk) aplikace.
+    width: Šířka herního plátna.
+    height: Výška herního plátna.
+    game_duration: Délka trvání hry v sekundách.
+
+Metoda load_background_image
+
+python
+
+def load_background_image(self, image_path):
+
+    Metoda pro načtení obrázku pozadí hry.
+    image_path: Cesta k souboru s obrázkem pozadí.
+    Návratová hodnota: Tuple obsahující (background_img, background_width, background_height).
+
+Metoda set_window_size
+
+python
+
+def set_window_size(self):
+
+    Metoda nastaví velikost okna na velikost pozadí hry.
+
+Metoda load_bird_frames
+
+python
+
+def load_bird_frames(self, image_path):
+
+    Metoda pro načtení snímků animace ptáka z obrázku.
+    image_path: Cesta k souboru s obrázkem ptáka.
+    Návratová hodnota: List obsahující snímky animace ptáka (ImageTk.PhotoImage).
+
+Metoda add_bird
+
+python
+
+def add_bird(self):
+
+    Metoda pro přidání nového ptáka na herní plátno.
+    Generuje nového ptáka s náhodnou pozicí po pravé straně herního plátna a ukládá ho do slovníku birds_dict.
+    Pták je přidán každou sekundu (po 1000 ms) zavoláním této metody.
+
+Metoda move_birds
+
+python
+
+def move_birds(self):
+
+    Metoda pro pohyb ptáků po herním plátně.
+    Každých 100 ms se aktualizuje pozice a obrázek ptáka na plátně, a zároveň se kontroluje, jestli pták přeletěl plátno. Pokud ano, odstraní se.
+    Metoda je zavolávána pravidelně, dokud hra neskončí.
+
+Metoda is_game_over
+
+python
+
+def is_game_over(self):
+
+    Metoda pro kontrolu, zda hra již skončila (když došel čas).
+    Návratová hodnota: True, pokud hra skončila, jinak False.
+
+Metoda shoot_bird
+
+python
+
+def shoot_bird(self, event):
+
+    Metoda pro zpracování střelby na ptáka.
+    event: Informace o události stisku tlačítka myši.
+    Metoda kontroluje, zda střela hráče zasáhla některého z ptáků na plátně. Pokud ano, odstraní ptáka a aktualizuje skóre.
+
+Metoda move_cursor
+
+python
+
+def move_cursor(self, event):
+
+    Metoda pro pohyb kurzoru na plátně.
+    event: Informace o události pohybu myši.
+    Metoda nastavuje pozici obrázku kurzoru na pozici kurzoru myši.
+
+Metoda update_score
+
+python
+
+def update_score(self):
+
+    Metoda pro aktualizaci skóre (počtu zasažených ptáků).
+    Inkrementuje atribut self.score a aktualizuje textový label na plátně s aktuálním skóre.
+
+Metoda update_time
+
+python
+
+def update_time(self):
+
+    Metoda pro aktualizaci zbývajícího času hry.
+    Sníží atribut self.time_remaining o 1, aktualizuje textový label na plátně s časem a zavolá sebe sama po 1000 ms, pokud zbývající čas není 0.
+
+Metoda end_game
+
+python
+
+def end_game(self):
+
+    Metoda pro ukončení hry.
+    Po skončení hry vymaže všechny prvky na plátně a zobrazí konečné skóre.
+
+Metoda load_target_image
+
+python
+
+def load_target_image(self, image_path):
+
+    Metoda pro načtení obrázku terče.
+    image_path: Cesta k souboru s obrázkem terče.
+    Načtený obrázek terče se uloží do atributu self.target_img.
+
+Vytvoření hlavního okna a spuštění hry
+
+python
+
+root = tk.Tk()
+root.title("Bird Shooting Game")
+
+width = 800
+height = 600
+GAME_DURATION = 30
+
+game = BirdShootingGame(root, width, height, GAME_DURATION)
+
+root.mainloop()
+
+    Vytvoříme hlavní okno pomocí tk.Tk() a nastavíme jeho titulek.
+    Nastavíme rozměry okna a délku hry.
+    Vytvoříme instanci hry (game) a spustíme hlavní smyčku aplikace pomocí root.mainloop().
